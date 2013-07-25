@@ -1,4 +1,4 @@
-require "same_as/version"
+require 'same_as/version'
 
 module SameAs
   # Your code goes here...
