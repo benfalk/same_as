@@ -1,5 +1,5 @@
 Given(/^I have a MailingAddress model from billing info$/) do
-  @billing = BillingInfo.new
+  @billing = BillingInformation.new
   @mailing = @billing.build_mailing_address address: 'just bounce',
                                             zip: '00844',
                                             state: 'awesome'
