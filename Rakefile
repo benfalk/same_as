@@ -2,35 +2,21 @@ require 'rubygems'
 require 'bundler/gem_tasks'
 require 'cucumber/rake/task'
 require 'active_record'
+require 'rspec/core/rake_task'
 
 namespace :db do
   
-  def connection_details
-    {
-        adapter: 'sqlite3',
-        database: 'db/test.sqlite3'
-    }
-  end
-
   desc 'Migrate the db'
   task :migrate do
-    ActiveRecord::Base.establish_connection(connection_details)
+    ActiveRecord::Base.establish_connection(adapter:'sqlite3', database:'db/test.sqlite3')
     ActiveRecord::Migrator.migrate('db/migrate/')
   end
 
-  desc 'Create the db'
-  task :create do
-    # TODO: this is probably just a migrate
-    # ActiveRecord::Base.establish_connection(connection_details)
-    # ActiveRecord::Base.connection.create_database(connection_details.fetch(:database))
-  end
+end
 
-  desc 'drop the db'
-  task :drop do
-    # TODO: need to just delete the file
-    # ActiveRecord::Base.establish_connection(connection_details)
-    # ActiveRecord::Base.connection.drop_database(connection_details.fetch(:database))
-  end
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.fail_on_error = false
+  t.rspec_opts = %w{--format documentation --color}
 end
 
 Cucumber::Rake::Task.new do |t|

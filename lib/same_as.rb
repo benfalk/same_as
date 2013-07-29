@@ -1,5 +1,12 @@
 require 'same_as/version'
+require 'same_as/class_methods'
 
 module SameAs
-  # Your code goes here...
+  class << self
+
+    def included(base)
+      base.send :extend, SameAs::ClassMethods
+    end
+
+  end
 end
