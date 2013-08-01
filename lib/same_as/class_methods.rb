@@ -11,6 +11,16 @@ module SameAs::ClassMethods
   #
   def same_as(model,opts={})
 
+    opts.merge!({
+        :from => :self,
+        :when => "same_as_#{model}".to_sym,
+        :fields => :*
+    })
+
+    attr_accessor opts[:when] unless instance_methods.include? opts[:when]
+
+
+
   end
 
 end

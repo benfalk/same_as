@@ -1,4 +1,5 @@
 require 'same_as/version'
+require 'same_as/copy_fields'
 require 'same_as/class_methods'
 
 module SameAs

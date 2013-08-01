@@ -6,7 +6,7 @@ Given(/^I have a MailingAddress model from billing info$/) do
 end
 
 Given(/^I have specified a ShippingAddress model to be the same$/) do
-  @shipping = @billing.build_shipping_address same_as_mailing: true
+  @shipping = @billing.build_shipping_address same_as_mailing_address: true
 end
 
 When(/^I save the ShippingAddress model$/) do

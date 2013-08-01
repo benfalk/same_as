@@ -15,6 +15,12 @@ describe SameAs do
 
     describe 'the "same_as" method' do
 
+      it 'creates an attr_accessible in the event one is not found' do
+        @model.same_as :another
+        @model.instance_methods.should include(:same_as_another)
+        @model.instance_methods.should include(:same_as_another=)
+      end
+
     end
 
   end
