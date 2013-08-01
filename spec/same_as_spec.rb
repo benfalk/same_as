@@ -15,6 +15,10 @@ describe SameAs do
 
     describe 'the "same_as" method' do
 
+      before :each do
+        @model.send :stub, :before_save
+      end
+
       it 'creates an attr_accessible in the event one is not found' do
         @model.same_as :another
         @model.instance_methods.should include(:same_as_another)
